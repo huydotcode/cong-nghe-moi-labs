@@ -1,6 +1,6 @@
 const dynamoService = require("../services/dynamoService");
 const s3Service = require("../services/s3Service");
-const { v4: uuidv4 } = require("uuid");
+const { randomUUID } = require("crypto");
 
 // Display list of products
 const getProducts = async (req, res) => {
@@ -30,7 +30,7 @@ const createProduct = async (req, res) => {
     }
 
     const newProduct = {
-      id: uuidv4(),
+      id: randomUUID(),
       name,
       price: parseFloat(price),
       quantity: parseInt(quantity),

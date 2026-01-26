@@ -2,7 +2,7 @@ const { s3Client } = require("../config/awsConfig");
 const { Upload } = require("@aws-sdk/lib-storage");
 const { DeleteObjectCommand } = require("@aws-sdk/client-s3");
 const path = require("path");
-const { v4: uuidv4 } = require("uuid");
+const { randomUUID } = require("crypto");
 
 const BUCKET_NAME = process.env.S3_BUCKET_NAME;
 
@@ -12,7 +12,7 @@ const uploadFile = async (file) => {
   }
 
   const fileExtension = path.extname(file.originalname);
-  const fileName = `${uuidv4()}${fileExtension}`;
+  const fileName = `${randomUUID()}${fileExtension}`;
 
   const upload = new Upload({
     client: s3Client,
