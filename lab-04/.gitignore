@@ -1,0 +1,9 @@
+node_modules/
+.env
+.DS_Store
+npm-debug.log
+*.log
+lab03-key.pem
+docs
+
+lab04_ec2_keypair.pem
