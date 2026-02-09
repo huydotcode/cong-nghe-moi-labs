@@ -90,11 +90,6 @@ AWS_REGION=ap-southeast-1
 AWS_ACCESS_KEY_ID=your_key
 AWS_SECRET_ACCESS_KEY=your_secret
 
-DYNAMODB_TABLE_NAME=Products
-USERS_TABLE_NAME=Users
-CATEGORIES_TABLE_NAME=Categories
-PRODUCT_LOGS_TABLE_NAME=ProductLogs
-
 S3_BUCKET_NAME=your-bucket
 SESSION_SECRET=your_session_secret
 ```
