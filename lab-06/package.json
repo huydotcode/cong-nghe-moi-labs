@@ -1,0 +1,26 @@
+{
+    "name": "lab-06",
+    "version": "1.0.0",
+    "description": "Product Management Web App - Node.js + EJS + MVC + DynamoDB + S3",
+    "main": "src/app.js",
+    "scripts": {
+        "start": "node src/app.js",
+        "dev": "nodemon src/app.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@aws-sdk/client-dynamodb": "^3.975.0",
+        "@aws-sdk/client-s3": "^3.975.0",
+        "@aws-sdk/lib-dynamodb": "^3.975.0",
+        "@aws-sdk/lib-storage": "^3.975.0",
+        "dotenv": "^16.4.7",
+        "ejs": "^3.1.10",
+        "express": "^4.21.2",
+        "multer": "^1.4.5-lts.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.11"
+    }
+}

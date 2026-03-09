@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Sửa sản phẩm</h4>
+                </div>
+                <div class="card-body">
+                    <% if (error) { %>
+                        <div class="alert alert-danger">
+                            <%= error %>
+                        </div>
+                        <% } %>
+
+                            <form action="/edit/<%= product.ID %>" method="POST" enctype="multipart/form-data" novalidate>
+                                <div class="mb-3">
+                                    <label class="form-label">Mã sản phẩm</label>
+                                    <input type="text" class="form-control" value="<%= product.ID %>" disabled />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="price" class="form-label">Giá (₫) <span class="text-danger">*</span></label>
+                                    <input type="number" step="0.01" min="0.01" class="form-control" id="price" name="price" value="<%= product.price %>" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label">Số lượng <span class="text-danger">*</span></label>
+                                    <input type="number" min="0" class="form-control" id="quantity" name="quantity" value="<%= product.quantity %>" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Hình ảnh (để trống nếu giữ ảnh cũ)</label>
+                                    <input type="file" class="form-control" id="image" name="image" accept="image/*" />
+                                    <div class="form-text">Chấp nhận: JPEG, PNG, GIF, WEBP (tối đa 5MB)</div>
+                                    <% if (product.image) { %>
+                                        <div class="mt-2">
+                                            <small class="text-muted">Ảnh hiện tại:</small><br />
+                                            <img src="<%= product.image %>" alt="Current Image" class="img-thumbnail mt-1" style="max-height: 150px;" />
+                                        </div>
+                                        <% } else { %>
+                                            <div class="mt-2">
+                                                <small class="text-muted">Chưa có ảnh</small>
+                                            </div>
+                                            <% } %>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-warning">Cập nhật sản phẩm</button>
+                                    <a href="/" class="btn btn-secondary">Hủy</a>
+                                </div>
+                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
