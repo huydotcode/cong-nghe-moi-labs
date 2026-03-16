@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light text-dark">
+    <div class="container mt-5 mb-5" style="max-width: 800px;">
+        <div class="mb-4 d-flex justify-content-between align-items-center">
+            <div>
+                <a href="/products" class="text-decoration-none text-muted small">&larr; Quay lại danh sách</a>
+                <h3 class="mt-2 fw-bold">Chi Tiết Sản Phẩm</h3>
+            </div>
+            <% if(product) { %>
+                <div>
+                    <a href="/products/edit/<%= product.id %>" class="btn btn-warning fw-medium rounded-1 px-3">Sửa</a>
+                    <form action="/products/delete/<%= product.id %>" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
+                        <button type="submit" class="btn btn-danger rounded-1 px-3 ms-2">Xóa</button>
+                    </form>
+                </div>
+                <% } %>
+        </div>
+
+        <% if (locals.error) { %>
+            <div class="alert alert-danger alert-dismissible fade show rounded-1 shadow-sm" role="alert">
+                <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
+
+                <% if (locals.success) { %>
+                    <div class="alert alert-success alert-dismissible fade show rounded-1 shadow-sm" role="alert">
+                        <%= success %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <% } %>
+
+                        <% if (product) { %>
+                            <div class="card shadow-sm border-0 border-top border-warning border-4 rounded-1 overflow-hidden">
+                                <div class="row g-0">
+                                    <div class="col-md-5 bg-white d-flex align-items-center justify-content-center p-4 border-end border-warning border-opacity-25">
+                                        <% if (product.url_image) { %>
+                                            <img src="<%= product.url_image %>" alt="<%= product.name %>" class="img-fluid rounded-1" style="max-height: 300px; object-fit: contain;">
+                                            <% } else { %>
+                                                <div class="text-center text-muted p-5 bg-light rounded-1 w-100 h-100 d-flex flex-column justify-content-center align-items-center" style="min-height: 250px;">
+                                                    <span class="d-block mb-2">Không Có Ảnh</span>
+                                                </div>
+                                                <% } %>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body p-4 p-md-5">
+                                            <span class="badge bg-secondary mb-2 rounded-1 fw-normal text-uppercase" style="font-size: 0.7rem;">ID: <%= product.id.substring(0, 8) %>...</span>
+
+                                            <h2 class="card-title fw-bold mb-3">
+                                                <%= product.name %>
+                                            </h2>
+
+                                            <div class="mb-4 pb-4 border-bottom border-warning border-opacity-25">
+                                                <span class="fs-3 fw-semibold text-danger d-block mb-1"><%= product.price.toLocaleString() %> VNĐ</span>
+                                                <span class="text-muted small">Giá đã bao gồm VAT.</span>
+                                            </div>
+
+                                            <div class="row g-3">
+                                                <div class="col-6">
+                                                    <div class="p-3 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-1">
+                                                        <div class="text-secondary small text-uppercase mb-1 fw-semibold" style="font-size: 0.75rem;">Tình Trạng</div>
+                                                        <div class="fw-bold text-dark">
+                                                            <%= product.unit_in_stock > 0 ? 'Còn hàng' : 'Hết hàng' %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="p-3 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-1">
+                                                        <div class="text-secondary small text-uppercase mb-1 fw-semibold" style="font-size: 0.75rem;">Tồn Kho</div>
+                                                        <div class="fw-bold text-dark">
+                                                            <%= product.unit_in_stock %> sản phẩm</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
